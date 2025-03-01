@@ -1,0 +1,41 @@
+version: 0.2
+
+env:
+  secrets-manager:
+   SERVERLESS_ACCESS_KEY: serverless/access-key2
+  # SLS_TELEMETRY_DISABLED: 1
+
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - echo Installing dependencies...
+      - npm install -g serverless
+
+  pre_build:
+    commands:
+      - echo Running pre-build commands...
+      - echo "Checking if SERVERLESS_ACCESS_KEY is set"
+      - export SLS_TELEMETRY_DISABLED=1
+      - export SERVERLESS_ACCESS_KEY=$SERVERLESS_ACCESS_KEY
+      - echo SERVERLESS_ACCESS_KEY
+      - if [ -z "$SERVERLESS_ACCESS_KEY" ]; then echo "SERVERLESS_ACCESS_KEY is missing!"; exit 1; fi
+#    - npm install
+  build:
+    commands:
+      - echo Build started on `date`
+      - npm install
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Running post-build commands...
+#      - serverless login
+      - serverless deploy --verbose --debug
+
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: yes
