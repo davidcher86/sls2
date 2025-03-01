@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   secrets-manager:
-   SERVERLESS_ACCESS_KEY: serverless/access-key2
+    SERVERLESS_ACCESS_KEY: "serverless/access-key2"
   # SLS_TELEMETRY_DISABLED: 1
 
 
@@ -18,10 +18,10 @@ phases:
     commands:
       - echo Running pre-build commands...
       - echo "Checking if SERVERLESS_ACCESS_KEY is set"
-      - export SLS_TELEMETRY_DISABLED=1
+      # - export SLS_TELEMETRY_DISABLED=1
       - export SERVERLESS_ACCESS_KEY=$SERVERLESS_ACCESS_KEY
-      - echo SERVERLESS_ACCESS_KEY
-      - if [ -z "$SERVERLESS_ACCESS_KEY" ]; then echo "SERVERLESS_ACCESS_KEY is missing!"; exit 1; fi
+      - echo $SERVERLESS_ACCESS_KEY
+      # - if [ -z "$SERVERLESS_ACCESS_KEY" ]; then echo "SERVERLESS_ACCESS_KEY is missing!"; exit 1; fi
 #    - npm install
   build:
     commands:
