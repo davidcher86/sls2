@@ -23,7 +23,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo "Checking if SERVERLESS_ACCESS_KEY is set"
-      - export SERVERLESS_ACCESS_KEY=$SERVERLESS_ACCESS_KEY
+      - export SERVERLESS_ACCESS_KEY=AKCfVBAY931wlN2xy8kBESGdspVPrNnVOF6Bxy3N1NH7L
       - echo $SERVERLESS_ACCESS_KEY
       - serverless deploy --verbose --debug
 
