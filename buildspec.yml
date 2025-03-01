@@ -22,18 +22,16 @@ phases:
       - export SERVERLESS_ACCESS_KEY=$SERVERLESS_ACCESS_KEY
       - echo $SERVERLESS_ACCESS_KEY
       # - if [ -z "$SERVERLESS_ACCESS_KEY" ]; then echo "SERVERLESS_ACCESS_KEY is missing!"; exit 1; fi
-#    - npm install
+      - npm install
   build:
     commands:
       - echo Build started on `date`
-      - npm install
+      - serverless deploy --verbose --debug
 
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Running post-build commands...
-#      - serverless login
-      - serverless deploy --verbose --debug
 
 artifacts:
   files:
