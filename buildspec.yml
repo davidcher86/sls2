@@ -5,6 +5,7 @@ env:
     SERVERLESS_ACCESS_KEY: "serverless/access-key2"
   # SLS_TELEMETRY_DISABLED: 1
 
+dashboard: false 
 
 phases:
   install:
@@ -17,15 +18,14 @@ phases:
   pre_build:
     commands:
       - echo Running pre-build commands...
-      - echo "Checking if SERVERLESS_ACCESS_KEY is set"
-      # - export SLS_TELEMETRY_DISABLED=1
-      - export SERVERLESS_ACCESS_KEY=$SERVERLESS_ACCESS_KEY
-      - echo $SERVERLESS_ACCESS_KEY
       # - if [ -z "$SERVERLESS_ACCESS_KEY" ]; then echo "SERVERLESS_ACCESS_KEY is missing!"; exit 1; fi
       - npm install
   build:
     commands:
       - echo Build started on `date`
+      - echo "Checking if SERVERLESS_ACCESS_KEY is set"
+      - export SERVERLESS_ACCESS_KEY=$SERVERLESS_ACCESS_KEY
+      - echo $SERVERLESS_ACCESS_KEY
       - serverless deploy --verbose --debug
 
   post_build:
