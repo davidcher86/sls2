@@ -1,8 +1,8 @@
 version: 0.2
 
-env:
-  secrets-manager:
-    SERVERLESS_ACCESS_KEY: "serverless/access-key2"
+# env:
+#   secrets-manager:
+#     SERVERLESS_ACCESS_KEY: ""
 
 dashboard: false 
 
@@ -24,6 +24,7 @@ phases:
       - echo Build started on `date`
       - echo "Checking if SERVERLESS_ACCESS_KEY is set"
       # - export SERVERLESS_ACCESS_KEY=AKCfVBAY931wlN2xy8kBESGdspVPrNnVOF6Bxy3N1NH7L
+      - export SERVERLESS_ACCESS_KEY=$(aws secretsmanager get-secret-value --secret-id serverless/access-key2 --query SecretString --output text | jq -r '.SERVERLESS_ACCESS_KEY')
       - export SERVERLESS_ACCESS_KEY=$(aws secretsmanager get-secret-value --secret-id serverless/access-key2 --query SecretString --output text | jq -r '.SERVERLESS_ACCESS_KEY')
       - echo $SERVERLESS_ACCESS_KEY
       - echo SERVERLESS_ACCESS_KEY
