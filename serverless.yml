@@ -12,6 +12,7 @@ plugins:
 dashboard: false
 
 custom:
+  esbuild: false
   localEnvironment:
     SERVERLESS_ENV: ${env:SERVERLESS_ENV, 'dev'}
 
