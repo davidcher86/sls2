@@ -64,4 +64,4 @@ resources:
     ServerlessDeploymentBucket:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: ${self:service}-${self:provider.stage}-deployment-bucket
+        BucketName: ${self:service}-${self:provider.stage}
