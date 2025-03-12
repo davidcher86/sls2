@@ -24,7 +24,9 @@
   "homepage": "https://github.com/davidcher86/sls2#readme",
   "devDependencies": {
     "@types/node": "^22.13.9",
+    "esbuild": "^0.25.1",
     "serverless": "^4.8.0",
+    "serverless-esbuild": "^1.55.0",
     "serverless-local-environment": "^0.3.0",
     "serverless-offline": "^14.4.0",
     "typescript": "^5.8.2",
