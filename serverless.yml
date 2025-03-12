@@ -10,7 +10,7 @@ plugins:
 
 custom:
   localEnvironment:
-    SERVERLESS_ENV: 'local'
+    SERVERLESS_ENV: ${env:SERVERLESS_ENV, 'dev'}
 
 provider:
   name: aws
@@ -58,3 +58,10 @@ functions:
     handler: src/functions/Playwright-scraperService.startScrape
   axiosScraper:
     handler: src/functions/AxiosScraperService.startScrape
+
+resources:
+  Resources:
+    ServerlessDeploymentBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:service}-${self:provider.stage}-deployment-bucket
