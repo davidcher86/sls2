@@ -8,6 +8,8 @@ plugins:
   - serverless-offline
   - serverless-local-environment
 
+dashboard: false
+
 custom:
   localEnvironment:
     SERVERLESS_ENV: ${env:SERVERLESS_ENV, 'dev'}
