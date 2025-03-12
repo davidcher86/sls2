@@ -9,8 +9,8 @@
     "sls:offline": "serverless offline",
     "sls:offline-puppeteer": "serverless invoke local -f puppeteerScraper --path payload.json",
     "sls:offline-selenium": "serverless invoke local -f seleniumScraper --path payload.json",
-    "sls:offline-playwright": "serverless invoke local -f playwrightScraper --path payload.json"
-
+    "sls:offline-playwright": "serverless invoke local -f playwrightScraper --path payload.json",
+    "sls:deploy": "serverless deploy"
   },
   "repository": {
     "type": "git",
