@@ -1,22 +1,60 @@
 # "service" is the name of this project. This will also be added to your AWS resource names.
 org: davidcher86
 
-service: sls-second-dev
+service: sls-scraper
 frameworkVersion: "4"
+
+plugins:
+  - serverless-offline
+  - serverless-local-environment
+
+custom:
+  localEnvironment:
+    SERVERLESS_ENV: 'local'
 
 provider:
   name: aws
   runtime: nodejs20.x
   region: eu-central-1
   memorySize: 512
-  timeout: 10
-  # disableDeprecations: true
-  # disableMonitoring: true
+  timeout: 60
+  stage: dev
+  environment:
+    SERVERLESS_ENV: ${env:SERVERLESS_ENV, 'local'}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - lambda:InvokeFunction
+      Resource:
+        - arn:aws:lambda:eu-central-1:048895294059:function:sls-scraper-dev-seleniumScraper
+        - arn:aws:lambda:eu-central-1:048895294059:function:sls-scraper-dev-puppeteerScraper
+        - arn:aws:lambda:eu-central-1:048895294059:function:sls-scraper-dev-playrightScraper
+        - arn:aws:lambda:eu-central-1:048895294059:function:sls-scraper-dev-axiosScraper
+
 
 functions:
-  hello:
-    handler: handler.hello
+  # hello:
+  #   handler: handler.hello
+  #   events:
+  #     - http:
+  #         path: /hey
+  #         method: get
+  hellos:
+    handler: src/functions/handler.hello
+  start:
+    handler: src/functions/ScrapeService.start
     events:
-      - httpApi:
-          path: /
-          method: get
+      - http:
+          path: /search
+          method: post
+          request:
+            schemas:
+              application/json: ${file(src/models/requestScrapeSchema.json)}
+  seleniumScraper:
+    handler: src/functions/Selenium-scraperService.startScrape
+  puppeteerScraper:
+    handler: src/functions/Puppeteer-scraperService.startScrape
+  playwrightScraper:
+    handler: src/functions/Playwright-scraperService.startScrape
+  axiosScraper:
+    handler: src/functions/AxiosScraperService.startScrape

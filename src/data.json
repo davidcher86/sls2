@@ -1,0 +1,116 @@
+{
+    "userID": [
+        {
+            "name": "Amazon",
+            "activated": false,
+            "disableSec": false,
+            "url": "https://www.amazon.com/s?k={query}",
+            "scrapeArgs": {
+                "scraperEngine": "static",
+                "loadSelector": "#search",
+                "listIdentifier": ".puisg-row",
+                "extractArgs": [
+                    {
+                        "keyName": "name",
+                        "selector": ".s-title-instructions-style",
+                        "type": "text"
+                    },
+                    {
+                        "keyName": "price",
+                        "selector": ".a-offscreen",
+                        "type": "text"
+                    },
+                    {
+                        "keyName": "image",
+                        "selector": ".s-image",
+                        "type": "src"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "AliExpress",
+            "activated": false,
+            "disableSec": true,
+            "url": "https://he.aliexpress.com/w/wholesale-{query}.html?spm=a2g0o.productlist.search.0",
+            "scrapeArgs": {
+                "scraperEngine": "poppeteer",
+                "listIdentifier": ".multi--modalContext--1Hxqhwi",    
+                "loadSelector": ".list--listWrapper--3kChcwS",
+                "extractArgs": [
+                    {
+                        "keyName": "name",
+                        "selector": ".multi--titleText--nXeOvyr",
+                        "type": "text"
+                    },
+                    {
+                        "keyName": "price",
+                        "selector": ".multi--price-sale--U-S0jtj",
+                        "type": "text"
+                    },
+                    {
+                        "keyName": "image",
+                        "selector": ".images--item--3XZa6xf",
+                        "type": "src"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "ebay",
+            "activated": true,
+            "disableSec": false,
+            "url": "https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2335524.m570.l1313&_nkw=pla&_sacat=0&_odkw={query}&_osacat=0",
+            "scrapeArgs": {
+                "scraperEngine": "poppeteer",
+                "loadSelector": ".s-item__wrapper",
+                "listIdentifier": ".s-item__wrapper",
+                "extractArgs": [
+                    {
+                        "keyName": "name",
+                        "selector": ".s-item__title",
+                        "type": "text"
+                    },
+                    {
+                        "keyName": "price",
+                        "selector": ".s-item__price",
+                        "type": "text"
+                    },
+                    {
+                        "keyName": "image",
+                        "selector": "img",
+                        "type": "src"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "shufersal",
+            "activated": false,
+            "disableSec": true,
+            "url": "https://www.shufersal.co.il/online/he/search?text={query}",
+            "scraperType": "static",
+            "scrapeArgs": {
+                "scraperEngine": "static",
+                "listIdentifier": ".SEARCH",
+                "extractArgs": [
+                    {
+                        "keyName": "name",
+                        "selector": ".description",
+                        "type": "text"
+                    },
+                    {
+                        "keyName": "price",
+                        "selector": ".price",
+                        "type": "text"
+                    },
+                    {
+                        "keyName": "image",
+                        "selector": "img",
+                        "type": "src"
+                    }
+                ]
+            }
+        }
+    ]
+}

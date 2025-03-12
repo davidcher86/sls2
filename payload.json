@@ -1,0 +1,31 @@
+{
+    "scraperInfo": {
+        "name": "Amazon",
+        "activated": true,
+        "disableSec": false,
+        "url": "https://www.amazon.com/s?k={query}",
+        "scrapeArgs": {
+            "scraperEngine": "poppeteer",
+            "loadSelector": ".s-result-item",
+            "listIdentifier": "div[role=\"listitem\"]",
+            "extractArgs": [
+                {
+                    "keyName": "name",
+                    "selector": ".a-section",
+                    "type": "text"
+                },
+                {
+                    "keyName": "price",
+                    "selector": ".a-price",
+                    "type": "text"
+                },
+                {
+                    "keyName": "image",
+                    "selector": ".a-section img",
+                    "type": "src"
+                }
+            ]
+        }
+    },
+    "query": "logi"
+}

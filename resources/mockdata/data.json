@@ -1,0 +1,116 @@
+{
+    "userID": [
+        {
+            "name": "Amazon",
+            "activated": true,
+            "disableSec": false,
+            "url": "https://www.amazon.com/s?k={query}",
+            "scrapeArgs": {
+                "scraperEngine": "poppeteer",
+                "loadSelector": ".s-result-item",
+                "listIdentifier": ".s-result-item",
+                "extractArgs": [
+                    {
+                        "keyName": "name",
+                        "selector": ".a-section",
+                        "type": "text"
+                    },
+                    {
+                        "keyName": "price",
+                        "selector": ".a-price",
+                        "type": "text"
+                    },
+                    {
+                        "keyName": "image",
+                        "selector": ".a-section img",
+                        "type": "src"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "temu",
+            "activated": false,
+            "disableSec": false,
+            "url": "https://www.temu.com/search_result.html?search_key={query}",
+            "scrapeArgs": {
+                "scraperEngine": "poppeteer",
+                "loadSelector": ".EKDT7a3v",
+                "listIdentifier": ".EKDT7a3v",
+                "extractArgs": [
+                    {
+                        "keyName": "name",
+                        "selector": "._2ZLByGwt",
+                        "type": "text"
+                    },
+                    {
+                        "keyName": "price",
+                        "selector": "._382YgpSF",
+                        "type": "text"
+                    },
+                    {
+                        "keyName": "image",
+                        "selector": "._3ZME5MBZ img",
+                        "type": "src"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "zap",
+            "activated": false,
+            "disableSec": false,
+            "url": "https://www.zap.co.il/search.aspx?keyword={query}",
+            "scrapeArgs": {
+                "scraperEngine": "playwright",
+                "loadSelector": ".ModelRow",
+                "listIdentifier": ".ModelRow",
+                "extractArgs": [
+                    {
+                        "keyName": "name",
+                        "selector": ".ModelTitle",
+                        "type": "text"
+                    },
+                    {
+                        "keyName": "price",
+                        "selector": ".total",
+                        "type": "text"
+                    },
+                    {
+                        "keyName": "image",
+                        "selector": ".ModelPic img",
+                        "type": "src"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "AliExpress",
+            "activated": false,
+            "disableSec": true,
+            "url": "https://he.aliexpress.com/w/wholesale-{query}.html?spm=a2g0o.productlist.search.0",
+            "scrapeArgs": {
+                "scraperEngine": "poppeteer",
+                "listIdentifier": ".multi--modalContext--1Hxqhwi",    
+                "loadSelector": ".list--listWrapper--3kChcwS",
+                "extractArgs": [
+                    {
+                        "keyName": "name",
+                        "selector": ".multi--titleText--nXeOvyr",
+                        "type": "text"
+                    },
+                    {
+                        "keyName": "price",
+                        "selector": ".multi--price-sale--U-S0jtj",
+                        "type": "text"
+                    },
+                    {
+                        "keyName": "image",
+                        "selector": ".images--item--3XZa6xf",
+                        "type": "src"
+                    }
+                ]
+            }
+        }
+    ]
+}
